@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "[ADD-ON] Executando script de inicialização..."
 
-SRC="/homeassistant/.Drivers"
+SRC="/config/.Drivers"
 DST="/data/.applysolve/.Drivers"
 
 # Verifica se a pasta de origem existe e tem arquivos
