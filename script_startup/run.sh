@@ -27,6 +27,6 @@ ls -la /share
 
 echo "Listando /data:"
 ls -la /data
-cp -rv /share/Drivers/* /data/applysolve/drivers/
+cp -rv /share/Drivers/* /config
 
 
