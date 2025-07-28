@@ -2,7 +2,7 @@
   "name": "Script Startup",
   "version": "1.6",
   "slug": "script_startup",
-  "description": "Addon de teste criado por Murilo",
+  "description": "Add-on de teste criado por Murilo",
   "startup": "application",
   "boot": "auto",
   "homeassistant": "2023.0.0",
