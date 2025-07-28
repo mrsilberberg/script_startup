@@ -1,10 +1,14 @@
 #!/bin/bash
 echo "[ADD-ON] Executando script de inicialização..."
 
-# Cria o diretório de destino, se não existir
-mkdir -p /data/.applysolve/.Drivers/
+SRC="/share/Drivers"
+DST="/data/.applysolve/.Drivers"
 
-# Move todos os arquivos e pastas de /share/Drivers para /data/.applysolve/.Drivers/
-mv /share/Drivers/* /data/.applysolve/.Drivers/
-
-echo "[ADD-ON] Cópia finalizada."
+# Verifica se a pasta de origem existe e tem arquivos
+if [ -d "$SRC" ] && [ "$(ls -A "$SRC")" ]; then
+    mkdir -p "$DST"
+    mv "$SRC"/* "$DST"/
+    echo "[ADD-ON] Cópia finalizada."
+else
+    echo "[ADD-ON] Nenhum arquivo encontrado em $SRC. Nada foi copiado."
+fi
