@@ -15,7 +15,7 @@
     "DAC_READ_SEARCH",
     "SYS_RAWIO"
   ],
-  "host_network": true
+  "host_network": true,
   "map": [
     "config:rw",
     "addons:rw",
@@ -25,6 +25,4 @@
     "media:rw"
   ]
 }
-
-
 
