@@ -2,7 +2,7 @@
 
 {
   "name": "Script Startup",
-  "version": "1.4",
+  "version": "1.5",
   "slug": "script_startup",
   "description": "Addon de teste criado por Murilo",
   "startup": "application",
