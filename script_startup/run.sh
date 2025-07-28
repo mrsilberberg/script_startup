@@ -4,55 +4,42 @@ echo "=============================================="
 echo "[ADD-ON] Script Startup iniciado por Murilo"
 echo "=============================================="
 
-# === Obtém o hostname do Home Assistant ===
-echo "[ADD-ON] Obtendo o hostname do Home Assistant..."
+# Caminhos usados
+SRC="/share/Drivers"
+DST="/data/applysolve/drivers"
 
-if [ -x /usr/bin/ha ]; then
-  HOST=$(/usr/bin/ha info | awk -F': ' '/^hostname:/ {print $2}')
-fi
-
-# Fallback via /etc/hostname
-if [ -z "$HOST" ]; then
-  HOST=$(cat /etc/hostname)
-fi
-
-# Verifica se hostname foi obtido
-if [ -z "$HOST" ]; then
-  echo "[ADD-ON] ❌ Não foi possível obter o hostname."
-  exit 1
-fi
-
-echo "[ADD-ON] ✅ Hostname detectado: $HOST"
-
-# === Define URL e TOKEN do Home Assistant ===
-TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmMmE2ZjQyMDZkZTQ0YTY0OTllMjI1Mjk5M2ZkMTEyNSIsImlhdCI6MTc1Mjk3NDEwNSwiZXhwIjoyMDY4MzM0MTA1fQ.FYJ5b-HsWIdPXcPFzLVgv_pfkz-AxRk5yPBl9TOJqXE"
-HA_URL="http://127.0.0.1:8123"
-
-# === Envia o hostname para o input_text.hostname_ha ===
-echo "[ADD-ON] Atualizando input_text.hostname_ha via API REST..."
-
-curl -s -X POST -H "Authorization: Bearer $TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"entity_id": "input_text.hostname_ha", "value": "'"$HOST"'"}' \
-  $HA_URL/api/services/input_text/set_value
-
-if [ $? -eq 0 ]; then
-  echo "[ADD-ON] ✅ input_text.hostname_ha atualizado com sucesso!"
+# Testa se o /data está acessível e gravável
+echo "[ADD-ON] Testando permissões de escrita em /data..."
+if touch /data/teste_murilo.txt 2>/dev/null; then
+  echo "[ADD-ON] ✅ Acesso confirmado à /data"
+  rm -f /data/teste_murilo.txt
 else
-  echo "[ADD-ON] ❌ Falha ao atualizar input_text.hostname_ha"
+  echo "[ADD-ON] ❌ ERRO: Sem permissão de escrita em /data"
+  echo "[ADD-ON] Verifique se 'data:rw' foi adicionado no 'map' do config.json"
   exit 1
 fi
 
-# === Cria diretório para teste ===
+# Cria o diretório /data/murilo_test
 echo "[ADD-ON] Criando diretório /data/murilo_test..."
 mkdir -p /data/murilo_test
 
 if [ -d /data/murilo_test ]; then
-  echo "[ADD-ON] ✅ Diretório /data/murilo_test criado com sucesso."
+  echo "[ADD-ON] ✅ Diretório /data/murilo_test criado com sucesso (ou já existia)."
 else
-  echo "[ADD-ON] ❌ Falha ao criar /data/murilo_test."
+  echo "[ADD-ON] ❌ ERRO: Falha ao criar o diretório /data/murilo_test."
   exit 1
 fi
 
-echo "[ADD-ON] Script finalizado com sucesso."
+# Verifica se a pasta de origem tem arquivos
+if [ -d "$SRC" ] && [ "$(ls -A "$SRC")" ]; then
+  echo "[ADD-ON] Arquivos encontrados em $SRC. Iniciando movimentação..."
+  mkdir -p "$DST"
+  mv "$SRC"/* "$DST"/
+  echo "[ADD-ON] ✅ Movimentação concluída com sucesso!"
+else
+  echo "[ADD-ON] ⚠️ Nenhum arquivo encontrado em $SRC. Nada foi movido."
+fi
+
+echo "=============================================="
+echo "[ADD-ON] Finalizado."
 echo "=============================================="
