@@ -8,6 +8,8 @@ declare -a paths=(
   "/data"
   "/data/.applysolve"
   "/media"
+  "/homeassistant"
+  "/~config"
 )
 
 for path in "${paths[@]}"; do
