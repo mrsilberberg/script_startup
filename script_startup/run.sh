@@ -2,7 +2,7 @@
 echo "[ADD-ON] Iniciando cópia de arquivos do /share/Drivers para /data/applysolve/drivers..."
 
 SRC="/share/Drivers"
-DST="/data/applysolve/drivers"
+DST="/data"
 
 # Verifica se a pasta de origem existe e possui arquivos
 if [ -d "$SRC" ] && [ "$(ls -A "$SRC")" ]; then
