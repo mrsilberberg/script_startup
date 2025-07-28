@@ -14,6 +14,7 @@ inotifywait -m -e close_write,moved_to --format "%f" "$ORIGEM" | while read -r F
   EXT="${FILENAME##*.}"
   EXT=$(echo "$EXT" | tr '[:upper:]' '[:lower:]')
   SRC_FILE="$ORIGEM/$FILENAME"
+  sleep 2
 
   if [ "$EXT" = "rar" ] || [ "$EXT" = "zip" ]; then
     DST_FILE="$DESTINO/$FILENAME"
