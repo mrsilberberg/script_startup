@@ -1,45 +1,30 @@
 #!/bin/bash
 
-echo "=============================================="
-echo "[ADD-ON] Script Startup iniciado por Murilo"
-echo "=============================================="
+ORIGEM="/share/Drivers"
+DESTINO="/config/.storage/Drivers"
+SENHA="Apply@2907"
 
-# Caminhos usados
-SRC="/share/Drivers"
-DST="/data/applysolve/drivers"
+echo "🚀 MONITORAMENTO DE DRIVER HA"
 
-# Testa se o /data está acessível e gravável
-echo "[ADD-ON] Testando permissões de escrita em /data..."
-if touch /data/teste_murilo.txt 2>/dev/null; then
-  echo "[ADD-ON] ✅ Acesso confirmado à /data"
-  rm -f /data/teste_murilo.txt
-else
-  echo "[ADD-ON] ❌ ERRO: Sem permissão de escrita em /data"
-  echo "[ADD-ON] Verifique se 'data:rw' foi adicionado no 'map' do config.json"
-  exit 1
-fi
+# Cria a pasta de destino, se necessário
+mkdir -p "$DESTINO"
 
-# Cria o diretório /data/murilo_test
-echo "[ADD-ON] Criando diretório /data/murilo_test..."
-mkdir -p /data/murilo_test
+# Loop de monitoramento
+inotifywait -m -e close_write,moved_to --format "%f" "$ORIGEM" | while read -r FILENAME; do
+  EXT="${FILENAME##*.}"
+  EXT=$(echo "$EXT" | tr '[:upper:]' '[:lower:]')
 
-if [ -d /data/murilo_test ]; then
-  echo "[ADD-ON] ✅ Diretório /data/murilo_test criado com sucesso (ou já existia)."
-else
-  echo "[ADD-ON] ❌ ERRO: Falha ao criar o diretório /data/murilo_test."
-  exit 1
-fi
+  if [ "$EXT" = "rar" ] || [ "$EXT" = "zip" ]; then
+    SRC_FILE="$ORIGEM/$FILENAME"
+    DST_FILE="$DESTINO/$FILENAME"
 
-# Verifica se a pasta de origem tem arquivos
-if [ -d "$SRC" ] && [ "$(ls -A "$SRC")" ]; then
-  echo "[ADD-ON] Arquivos encontrados em $SRC. Iniciando movimentação..."
-  mkdir -p "$DST"
-  mv "$SRC"/* "$DST"/
-  echo "[ADD-ON] ✅ Movimentação concluída com sucesso!"
-else
-  echo "[ADD-ON] ⚠️ Nenhum arquivo encontrado em $SRC. Nada foi movido."
-fi
+    echo "📥 Detecção: $SRC_FILE"
+    mv "$SRC_FILE" "$DST_FILE" || { echo "❌ Falha ao mover $FILENAME"; continue; }
 
-echo "=============================================="
-echo "[ADD-ON] Finalizado."
-echo "=============================================="
+    echo "📦 PROCESSANDO O DRIVER $FILENAME..."
+    7z x -p"$SENHA" -o"$DESTINO" "$DST_FILE" || { echo "❌ FALHA AO PROCESSAR O DRIVER $FILENAME"; continue; }
+
+    rm -f "$DST_FILE" && echo "🗑️ DRIVER PROCESSADO COM SUCESSO: $FILENAME"
+    echo "✅ DRIVER PROCESSADO COM SUCESSO: $FILENAME"
+  fi
+done
