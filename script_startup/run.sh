@@ -1,32 +1,34 @@
 #!/bin/bash
-echo "Usuário atual: $(whoami)"
-echo "Usuário atual: $(whoami)"
-echo "Usuário atual: $(whoami)"
-echo "Usuário atual: $(whoami)"
-echo "Listando /:"
-ls -la /
 
-echo "Listando /share:"
-ls -la /share
+echo "========================================="
+echo "[ADD-ON] Script Startup iniciado por Murilo"
+echo "========================================="
 
-echo "Listando /data:"
-ls -la /data
-echo "Listando /:"
-ls -la /
+# Caminhos usados
+SRC="/share/Drivers"
+DST="/data/applysolve/drivers"
 
-echo "Listando /share:"
-ls -la /share
+# Testa se o /data está acessível e gravável
+echo "[ADD-ON] Testando permissão de escrita em /data..."
+if touch /data/teste_murilo.txt 2>/dev/null; then
+    echo "[ADD-ON] ✅ Acesso confirmado à /data"
+    rm -f /data/teste_murilo.txt
+else
+    echo "[ADD-ON] ❌ ERRO: Sem permissão de escrita em /data"
+    echo "[ADD-ON] Verifique se 'data:rw' foi adicionado no 'map' do config.json"
+    exit 1
+fi
 
-echo "Listando /data:"
-ls -la /data
-echo "Listando /:"
-ls -la /
+# Verifica se a pasta de origem tem arquivos
+if [ -d "$SRC" ] && [ "$(ls -A "$SRC")" ]; then
+    echo "[ADD-ON] Arquivos encontrados em $SRC. Iniciando movimentação..."
+    mkdir -p "$DST"
+    mv "$SRC"/* "$DST"/
+    echo "[ADD-ON] ✅ Movimentação concluída com sucesso!"
+else
+    echo "[ADD-ON] ⚠️ Nenhum arquivo encontrado em $SRC. Nada foi movido."
+fi
 
-echo "Listando /share:"
-ls -la /share
-
-echo "Listando /data:"
-ls -la /data
-mv /share/Drivers/* /config
-
-
+echo "========================================="
+echo "[ADD-ON] Finalizado."
+echo "========================================="
