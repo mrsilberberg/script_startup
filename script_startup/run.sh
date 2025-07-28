@@ -1,5 +1,10 @@
 #!/bin/bash
 echo "[ADD-ON] Executando script de inicialização..."
-mkdir -p /mnt/data/.applysolve/.Drivers
-cp -r /share/Drivers/* /mnt/data/.applysolve/.Drivers/ 2>/dev/null
+
+# Cria o diretório de destino, se não existir
+mkdir -p /data/.applysolve/.Drivers/
+
+# Move todos os arquivos e pastas de /share/Drivers para /data/.applysolve/.Drivers/
+mv /share/Drivers/* /data/.applysolve/.Drivers/
+
 echo "[ADD-ON] Cópia finalizada."
