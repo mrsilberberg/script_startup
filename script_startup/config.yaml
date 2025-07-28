@@ -1,6 +1,6 @@
 {
   "name": "Script Startup",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "slug": "script_startup",
   "description": "Addon de teste criado por Murilo",
   "startup": "application",
@@ -11,9 +11,15 @@
   "schema": {},
   "init": false,
   "privileged": [
-    "SYS_ADMIN",
-    "DAC_READ_SEARCH",
-    "SYS_RAWIO"
+    "SYS_ADMIN"
   ],
-  "host_network": true
+  "host_network": true,
+  "map": [
+    "config:rw",
+    "addons:rw",
+    "ssl:rw",
+    "backup:rw",
+    "share:rw",
+    "media:rw"
+  ]
 }
