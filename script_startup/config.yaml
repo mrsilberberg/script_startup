@@ -1,0 +1,15 @@
+name: "Script Startup"
+version: "1.0.0"
+slug: "script_startup"
+description: "Executa scripts no boot do Home Assistant OS"
+startup: services
+boot: auto
+init: false
+hassio_api: false
+host_network: true
+privileged:
+  - SYS_ADMIN
+  - DAC_READ_SEARCH
+  - SYS_RAWIO
+options: {}
+schema: {}
