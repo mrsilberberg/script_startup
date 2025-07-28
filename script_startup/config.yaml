@@ -1,15 +1,19 @@
-name: "Script Startup"
-version: "1.0.0"
-slug: "script_startup"
-description: "Executa scripts no boot do Home Assistant OS"
-startup: services
-boot: auto
-init: false
-hassio_api: false
-host_network: true
-privileged:
-  - SYS_ADMIN
-  - DAC_READ_SEARCH
-  - SYS_RAWIO
-options: {}
-schema: {}
+{
+  "name": "Script Startup",
+  "version": "1.0.0",
+  "slug": "script_startup",
+  "description": "Addon de teste criado por Murilo",
+  "startup": "application",
+  "boot": "auto",
+  "homeassistant": "2023.0.0",
+  "arch": ["amd64", "armv7", "aarch64"],
+  "options": {},
+  "schema": {},
+  "init": false,
+  "privileged": [
+    "SYS_ADMIN",
+    "DAC_READ_SEARCH",
+    "SYS_RAWIO"
+  ],
+  "host_network": true
+}
