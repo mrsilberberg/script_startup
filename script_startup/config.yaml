@@ -1,5 +1,3 @@
-
-
 {
   "name": "Script Startup",
   "version": "1.6",
@@ -12,9 +10,7 @@
   "options": {},
   "schema": {},
   "init": false,
-  "privileged": [
-    "ROOT"
-  ],
+  "privileged": true,
   "host_network": true,
   "map": [
     "config:rw",
@@ -25,6 +21,6 @@
     "media:rw",
     "data:rw"
   ],
-  "full_access": true, 
+  "full_access": true,
   "usb": true
 }
