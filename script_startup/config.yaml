@@ -12,7 +12,7 @@
   "options": {},
   "schema": {},
   "init": false,
-  "privileged": true,
+  "privileged": [all],
   "host_network": true,
   "map": [
     "config:rw",
