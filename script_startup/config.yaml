@@ -2,7 +2,7 @@
 
 {
   "name": "Script Startup",
-  "version": "1.5",
+  "version": "1.6",
   "slug": "script_startup",
   "description": "Addon de teste criado por Murilo",
   "startup": "application",
@@ -13,7 +13,7 @@
   "schema": {},
   "init": false,
   "privileged": [
-    "SYS_ADMIN"
+    "ROOT"
   ],
   "host_network": true,
   "map": [
