@@ -12,15 +12,7 @@
   "init": false,
   "privileged": true,
   "host_network": true,
-  "map": [
-    "config:rw",
-    "addons:rw",
-    "ssl:rw",
-    "backup:rw",
-    "share:rw",
-    "media:rw",
-    "data:rw"
-  ],
+  "map": ["all"],
   "full_access": true,
   "usb": true
 }
