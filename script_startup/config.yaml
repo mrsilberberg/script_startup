@@ -2,17 +2,27 @@
   "name": "Script Startup",
   "version": "1.6",
   "slug": "script_startup",
-  "description": "Add-on de teste criado por Murilo",
+  "description": "Addon de teste criado por Murilo",
   "startup": "application",
   "boot": "auto",
   "homeassistant": "2023.0.0",
   "arch": ["amd64", "armv7", "aarch64"],
-  "init": false,
-  "privileged": false,
-  "host_network": true,
-  "map": ["all"],
-  "full_access": true,
-  "usb": true,
   "options": {},
-  "schema": {}
+  "schema": {},
+  "init": false,
+  "privileged": [
+    "SYS_ADMIN"
+  ],
+  "host_network": true,
+  "map": [
+    "config:rw",
+    "addons:rw",
+    "ssl:rw",
+    "backup:rw",
+    "share:rw",
+    "media:rw",
+    "data:rw"
+  ],
+  "full_access": true, 
+  "usb": true
 }
