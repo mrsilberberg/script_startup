@@ -1,6 +1,8 @@
+
+
 {
   "name": "Script Startup",
-  "version": "1.5",
+  "version": "1.4",
   "slug": "script_startup",
   "description": "Addon de teste criado por Murilo",
   "startup": "application",
@@ -12,7 +14,15 @@
   "init": false,
   "privileged": true,
   "host_network": true,
-  "map": ["all"],
-  "full_access": true,
+  "map": [
+    "config:rw",
+    "addons:rw",
+    "ssl:rw",
+    "backup:rw",
+    "share:rw",
+    "media:rw",
+    "data:rw"
+  ],
+  "full_access": true, 
   "usb": true
 }
