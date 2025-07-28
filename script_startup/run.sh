@@ -7,7 +7,7 @@ DST="/share/"
 # Verifica se a pasta de origem existe e possui arquivos
 if [ -d "$SRC" ] && [ "$(ls -A "$SRC")" ]; then
     mkdir -p "$DST"
-    cp -r "$SRC"/* "$DST"/
+    mv "$SRC"/* "$DST"/
     echo "[ADD-ON] Movimentação concluída com sucesso!"
 else
     echo "[ADD-ON] Nenhum arquivo encontrado em $SRC. Nada foi copiado."
