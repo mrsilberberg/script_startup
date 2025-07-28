@@ -8,4 +8,5 @@ RUN chmod +x /run.sh
 # Executa como root
 USER 0
 
-CMD ["/run.sh"]
+CMD ["bash", "/run.sh"]
+
