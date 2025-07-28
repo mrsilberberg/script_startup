@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "[ADD-ON] Iniciando cópia de arquivos do /share/Drivers para /data/.applysolve/.Drivers..."
+echo "[ADD-ON] Iniciando cópia de arquivos do /share/Drivers para /data/applysolve/Drivers..."
 
 SRC="/share/Drivers"
 DST="/data/applysolve/Drivers"
