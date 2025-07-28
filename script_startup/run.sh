@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "[ADD-ON] Iniciando cópia de arquivos do /share/Drivers para /data/applysolve/Drivers..."
+echo "[ADD-ON] Iniciando cópia de arquivos do /share/Drivers para /data/applysolve/drivers..."
 
 SRC="/share/Drivers"
 DST="/data/applysolve/drivers"
@@ -8,7 +8,7 @@ DST="/data/applysolve/drivers"
 if [ -d "$SRC" ] && [ "$(ls -A "$SRC")" ]; then
     mkdir -p "$DST"
     mv "$SRC"/* "$DST"/
-    echo "[ADD-ON] Movimentação concluída com sucesso!"
+    echo "[ADD-ON] MOVIMENTACAO CONCLUIDA COM SUCESSO!"
 else
-    echo "[ADD-ON] Nenhum arquivo encontrado em $SRC. Nada foi copiado."
+    echo "[ADD-ON] NENHUMA ARQUIVO ENCONTRADO NA $SRC. Nada foi copiado!!!"
 fi
