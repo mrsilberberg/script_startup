@@ -12,7 +12,9 @@
   "options": {},
   "schema": {},
   "init": false,
-  "privileged": ["ROOT"],
+  "privileged": [
+    "SYS_ADMIN"
+  ],
   "host_network": true,
   "map": [
     "config:rw",
