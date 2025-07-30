@@ -2,6 +2,8 @@ FROM alpine:3.20
 
 # Instala dependências
 RUN apk update &&     apk add --no-cache bash curl jq inotify-tools libstdc++ libgcc
+RUN apk add mc
+
 
 # Baixa o binário 'unrar' do repositório EDM115
 RUN curl -LsSf https://api.github.com/repos/EDM115/unrar-alpine/releases/latest \
