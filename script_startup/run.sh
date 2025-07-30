@@ -9,7 +9,12 @@ echo "🚀 MONITORAMENTO DE DRIVER HA"
 # Cria a pasta de destino, se necessário
 mkdir -p "$DESTINO"
 
-
+# Verifica se o Midnight Commander está instalado
+if ! command -v mc &> /dev/null; then
+  echo "⚠️ mc (Midnight Commander) não encontrado!"
+else
+  echo "🧭 mc instalado com sucesso"
+fi
 
 # Loop de monitoramento de arquivos novos
 inotifywait -m -e close_write,moved_to --format "%f" "$ORIGEM" | while read -r FILENAME; do
