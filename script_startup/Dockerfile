@@ -8,7 +8,8 @@ RUN apk add --no-cache \
     inotify-tools \
     libstdc++ \
     libgcc \
-    mc
+    unzip \
+    mc  # ✅ MIDNIGHT COMMANDER instalado aqui
 
 # Baixa o binário 'unrar' do repositório EDM115
 RUN curl -LsSf https://api.github.com/repos/EDM115/unrar-alpine/releases/latest \
