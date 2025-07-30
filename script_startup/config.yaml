@@ -1,6 +1,6 @@
 {
   "name": "Script Startup",
-  "version": "1.16",
+  "version": "1.17",
   "slug": "script_startup",
   "description": "Scripts de Inicialização Home Assistant",
   "startup": "application",
