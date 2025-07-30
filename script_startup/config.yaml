@@ -1,31 +1,28 @@
 {
-  "name": "Unrar Monitor",
+  "name": "Script Startup",
   "version": "1.16",
-  "slug": "unrar_monitor",
-  "description": "Monitora e extrai arquivos .rar automaticamente no Home Assistant",
+  "slug": "script_startup",
+  "description": "Scripts de Inicialização Home Assistant",
   "startup": "application",
   "boot": "auto",
   "homeassistant": "2023.0.0",
   "arch": ["amd64", "armv7", "aarch64"],
-
+  "options": {},
+  "schema": {},
   "init": false,
-  "host_network": true,
-  "usb": false,
-
-  "full_access": true,
   "privileged": [
     "SYS_ADMIN"
   ],
-
+  "host_network": true,
   "map": [
     "config:rw",
     "addons:rw",
     "ssl:rw",
     "backup:rw",
     "share:rw",
-    "media:rw"
+    "media:rw",
+    "data:rw"
   ],
-
-  "options": {},
-  "schema": {}
-}
+  "full_access": true, 
+  "usb": true
+} 
